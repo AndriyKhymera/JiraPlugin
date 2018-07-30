@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="testPlugin"/>
+  <!-- add our web resources -->
+  <web-resource key="testPlugin-resources" name="testPlugin Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="testPlugin.css" location="/css/testPlugin.css"/>
+    <resource type="download" name="testPlugin.js" location="/js/testPlugin.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>testPlugin</context>
+  </web-resource>
+  <web-section name="newSection" i18n-name-key="new-section.name" key="new-section" location="my-item-link" weight="1000">
+    <description key="new-section.description">The newSection Plugin</description>
+  </web-section>
+  <web-item name="myItem" i18n-name-key="my-item.name" key="my-item" section="system.top.navigation.bar" weight="1000">
+    <description key="my-item.description">The myItem Plugin</description>
+    <label key="my-item.label"/>
+    <link linkId="my-item-link"/>
+  </web-item>
+  <web-item name="Atl Developer Site" i18n-name-key="atl-developer-site.name" key="atl-developer-site" section="my-item-link/new-section" weight="1000">
+    <description key="atl-developer-site.description">The Atl Developer Site Plugin</description>
+    <label key="atl-developer-site.label"/>
+    <link linkId="atl-developer-site-link">http://developer.atlassian.com/docs</link>
+  </web-item>
+  <customfield-type name="Balanced Paranthesis Custom Field" i18n-name-key="balanced-paranthesis-custom-field.name" key="balanced-paranthesis-custom-field" class="testPlugin.BalancedParanthesisCustomField">
+    <description key="balanced-paranthesis-custom-field.description">The Balanced Paranthesis Custom Field Plugin</description>
+    <resource name="view" type="velocity" location="/templates/customfields/balanced-paranthesis-custom-field/view.vm"/>
+    <resource name="edit" type="velocity" location="/templates/customfields/balanced-paranthesis-custom-field/edit.vm"/>
+  </customfield-type>
+</atlassian-plugin>
