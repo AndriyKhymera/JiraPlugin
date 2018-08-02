@@ -8,10 +8,12 @@ import com.atlassian.jira.issue.customfields.persistence.PersistenceFieldType;
 import com.atlassian.plugin.spring.scanner.annotation.component.Scanned;
 import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 
+import javax.inject.Named;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 @Scanned
+@Named("balancedParanthesisCustomField")
 public class BalancedParanthesisCustomField extends AbstractSingleFieldType<String> {
 
     @ComponentImport
@@ -29,17 +31,17 @@ public class BalancedParanthesisCustomField extends AbstractSingleFieldType<Stri
     }
 
     @Override
-    protected PersistenceFieldType getDatabaseType() {
+    public PersistenceFieldType getDatabaseType() {
         return PersistenceFieldType.TYPE_LIMITED_TEXT;
     }
 
     @Override
-    protected Object getDbValueFromObject(String s) {
+    public Object getDbValueFromObject(String s) {
         return getStringFromSingularObject(s);
     }
 
     @Override
-    protected String getObjectFromDbValue(Object dbValue) throws FieldValidationException {
+    public String getObjectFromDbValue(Object dbValue) throws FieldValidationException {
         return getSingularObjectFromString((String) dbValue);
     }
 
